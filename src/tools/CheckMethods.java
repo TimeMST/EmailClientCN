@@ -12,11 +12,15 @@ package tools;
 public class CheckMethods {
 
     public static void PrintInfoMessage(String str) {
-
+        System.out.println("Info::" + str);
     }
 
     public static void PrintDebugMessage(String str) {
+        System.out.println("Debug::" + str);
+    }
 
+    public static void PrintErrorMessage(String str) {
+        System.out.println("Error::" + str);
     }
 
 }

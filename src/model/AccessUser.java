@@ -9,7 +9,7 @@ import tools.DBHelper;
 import tools.json.JSONObject;
 
 /**
- *
+ * 用户的接口类,用于同数据库进行IO.
  * @author maokelong
  */
 public class AccessUser {
@@ -30,17 +30,22 @@ public class AccessUser {
      * @return 用户对象
      */
     public static EntityUser getUser() {
-        EntityUser entityUser;
-        String keyString = "0";
-        DBHelper dBHelper = new DBHelper();
-        dBHelper.openDatabase();
-        try {
-            entityUser = new EntityUser(dBHelper.readFromDatabase(keyString));
-        } catch (Exception e) {
-            entityUser = new EntityUser();
+        if(emailclientcn.globalRecords.getEntityUser() == null)
+        {
+            EntityUser entityUser;
+            String keyString = "0";
+            DBHelper dBHelper = new DBHelper();
+            dBHelper.openDatabase();
+            try {
+                entityUser = new EntityUser(dBHelper.readFromDatabase(keyString));
+            } catch (Exception e) {
+                entityUser = new EntityUser();
+            }
+            dBHelper.closeDatabase();
+            return entityUser;
+        }else{
+            return emailclientcn.globalRecords.getEntityUser();
         }
-        dBHelper.closeDatabase();
-        return entityUser;
     }
 
 }

@@ -47,21 +47,27 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jLabel2" alignment="1" max="32767" attributes="0"/>
-                  <Component id="jLabel1" alignment="1" max="32767" attributes="0"/>
-                  <Component id="jLabel3" alignment="0" max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                  <Component id="jLabel3" max="32767" attributes="0"/>
                   <Component id="btn_clr" alignment="1" max="32767" attributes="0"/>
+                  <Component id="jLabel1" alignment="1" max="32767" attributes="0"/>
+                  <Component id="jLabel4" alignment="1" max="32767" attributes="0"/>
+                  <Component id="jLabel2" alignment="1" max="32767" attributes="0"/>
               </Group>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="btn_login" max="32767" attributes="0"/>
-                  <Component id="txt_emailPsw" alignment="0" max="32767" attributes="0"/>
-                  <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="txt_emailAddr" alignment="1" min="-2" pref="373" max="-2" attributes="0"/>
-                          <Component id="txt_hostAddr" alignment="1" min="-2" pref="373" max="-2" attributes="0"/>
+                          <Component id="btn_login" alignment="1" pref="373" max="32767" attributes="0"/>
+                          <Component id="txt_emailPsw" max="32767" attributes="0"/>
+                          <Component id="txt_emailAddr" alignment="1" max="32767" attributes="0"/>
+                      </Group>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="txt_hostAddrPOP" alignment="1" max="32767" attributes="0"/>
+                          <Component id="txt_hostAddrSMTP" max="32767" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -75,24 +81,29 @@
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="txt_hostAddr" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txt_hostAddrPOP" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txt_hostAddrSMTP" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="txt_emailAddr" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel2" alignment="3" min="-2" pref="21" max="-2" attributes="0"/>
                   <Component id="txt_emailPsw" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="32" max="32767" attributes="0"/>
+              <EmptySpace pref="21" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="btn_clr" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="btn_login" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -135,13 +146,20 @@
     <Component class="javax.swing.JLabel" name="jLabel3">
       <Properties>
         <Property name="horizontalAlignment" type="int" value="4"/>
-        <Property name="text" type="java.lang.String" value="POP&#x63a5;&#x6536;&#x670d;&#x52a1;&#x5668;&#xff1a;"/>
+        <Property name="text" type="java.lang.String" value=" POP&#x63a5;&#x6536;&#x670d;&#x52a1;&#x5668;&#xff1a;"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="txt_hostAddr">
+    <Component class="javax.swing.JTextField" name="txt_hostAddrPOP">
       <Properties>
         <Property name="toolTipText" type="java.lang.String" value=""/>
       </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel4">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="SMTP&#x53d1;&#x4ef6;&#x670d;&#x52a1;&#x5668;&#xff1a;"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="txt_hostAddrSMTP">
     </Component>
   </SubComponents>
 </Form>

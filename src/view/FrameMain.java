@@ -5,12 +5,14 @@
  */
 package view;
 
+import org.eclipse.persistence.internal.oxm.mappings.Login;
+
 /**
  *
  * @author maokelong
  */
 public class FrameMain extends javax.swing.JFrame {
-
+    
     /**
      * Creates new form FrameMain
      */

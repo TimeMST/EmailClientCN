@@ -18,12 +18,14 @@ import com.sleepycat.je.LockMode;
 import com.sleepycat.je.OperationStatus;
 import com.sleepycat.je.Transaction;
 import com.sleepycat.je.TransactionConfig;
+import emailclientcn.globalRecords;
 import java.io.File;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
+import model.AccessUser;
 import tools.StringHelper;
 
 /**
@@ -44,9 +46,15 @@ public class DBHelper {
     //数据库名称
     private String dbName = "";
 
+    /**
+     * 当系统登陆前,数据库名为"data",登陆后为用户邮箱地址
+     */
     public DBHelper() {
         fileName = "../db/";
         dbName = "data";
+        if (globalRecords.getEntityUser() != null) {
+            dbName = globalRecords.getEntityUser().getEmailAddr();
+        }
     }
 
     /*

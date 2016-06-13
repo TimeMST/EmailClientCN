@@ -6,6 +6,7 @@
 package view;
 
 import com.sun.scenario.effect.impl.prism.sw.PSWDrawable;
+import emailclientcn.globalRecords;
 import java.util.Arrays;
 import javax.swing.JOptionPane;
 import jdk.nashorn.internal.runtime.regexp.RegExp;
@@ -29,7 +30,8 @@ public class FrameLogin extends javax.swing.JFrame {
         EntityUser entityUser = AccessUser.getUser();
         if (entityUser.getAccess()) {
             //找成功，显示用户信息
-            txt_hostAddr.setText(entityUser.getHostAddr());
+            txt_hostAddrSMTP.setText(entityUser.getHostAddrSMTP());
+            txt_hostAddrPOP.setText(entityUser.getHostAddrPOP3());
             txt_emailAddr.setText(entityUser.getEmailAddr());
             txt_emailPsw.setText(entityUser.getEmailPsw());
         }
@@ -54,7 +56,9 @@ public class FrameLogin extends javax.swing.JFrame {
         btn_login = new javax.swing.JButton();
         btn_clr = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
-        txt_hostAddr = new javax.swing.JTextField();
+        txt_hostAddrPOP = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        txt_hostAddrSMTP = new javax.swing.JTextField();
 
         jButton1.setText("jButton1");
 
@@ -87,9 +91,11 @@ public class FrameLogin extends javax.swing.JFrame {
         });
 
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel3.setText("POP接收服务器：");
+        jLabel3.setText(" POP接收服务器：");
 
-        txt_hostAddr.setToolTipText("");
+        txt_hostAddrPOP.setToolTipText("");
+
+        jLabel4.setText("SMTP发件服务器：");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -97,20 +103,24 @@ public class FrameLogin extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btn_clr, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(18, 18, 18)
+                    .addComponent(btn_clr, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btn_login, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(txt_emailPsw)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txt_emailAddr, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 373, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txt_hostAddr, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 373, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(btn_login, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 373, Short.MAX_VALUE)
+                            .addComponent(txt_emailPsw)
+                            .addComponent(txt_emailAddr, javax.swing.GroupLayout.Alignment.TRAILING)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txt_hostAddrPOP, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(txt_hostAddrSMTP))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -119,20 +129,24 @@ public class FrameLogin extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(txt_hostAddr, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                    .addComponent(txt_hostAddrPOP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(txt_hostAddrSMTP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(txt_emailAddr, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(22, 22, 22)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txt_emailPsw, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btn_clr)
                     .addComponent(btn_login))
-                .addContainerGap())
+                .addGap(22, 22, 22))
         );
 
         pack();
@@ -140,11 +154,12 @@ public class FrameLogin extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_loginActionPerformed
-        String host = txt_hostAddr.getText().trim();
+        String hostPOP = txt_hostAddrPOP.getText().trim();
+        String hostSMTP = txt_hostAddrSMTP.getText().trim();
         String addr = txt_emailAddr.getText().trim();
         String psw = new String(txt_emailPsw.getPassword()).trim();
-
-        if (host.isEmpty()) {
+        
+        if (hostPOP.isEmpty() || hostSMTP.isEmpty()) {
             JOptionPane.showMessageDialog(this, "请输入主机地址!");
         } else if (addr.isEmpty() || psw.isEmpty()) {
             JOptionPane.showMessageDialog(this, "请输入帐号和密码!");
@@ -152,18 +167,20 @@ public class FrameLogin extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "请正确的邮箱地址!");
         } else {
             //保存用户信息
-            AccessUser.saveUser(new EntityUser(Boolean.TRUE, host, addr, psw));
+            AccessUser.saveUser(new EntityUser(Boolean.TRUE, hostSMTP, hostPOP, addr, psw));
+            globalRecords.setEntityUser(new EntityUser(Boolean.TRUE, hostSMTP, hostPOP, addr, psw));
             //打开主窗体并关闭登陆窗体
             this.setVisible(Boolean.FALSE);
             FrameMain frameMain = new FrameMain();
             frameMain.setVisible(Boolean.TRUE);
-
+            
         }
 
     }//GEN-LAST:event_btn_loginActionPerformed
 
     private void btn_clrActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_clrActionPerformed
-        txt_hostAddr.setText("");
+        txt_hostAddrSMTP.setText("");
+        txt_hostAddrPOP.setText("");
         txt_emailAddr.setText("");
         txt_emailPsw.setText("");
     }//GEN-LAST:event_btn_clrActionPerformed
@@ -210,10 +227,12 @@ public class FrameLogin extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextField txt_emailAddr;
     private javax.swing.JPasswordField txt_emailPsw;
-    private javax.swing.JTextField txt_hostAddr;
+    private javax.swing.JTextField txt_hostAddrPOP;
+    private javax.swing.JTextField txt_hostAddrSMTP;
     // End of variables declaration//GEN-END:variables
 }
