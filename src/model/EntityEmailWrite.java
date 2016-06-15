@@ -41,7 +41,7 @@ public class EntityEmailWrite {
             this.mailTitle = jSONObject.getString("mailTitle");
             this.mailContent = jSONObject.getString("mailContent");
         } catch (Exception e) {
-            CheckMethods.PrintErrorMessage("试图在发件实体中解析非发件json！");
+            CheckMethods.PrintErrorMessage("试图在发件实体中解析非发件json！","entity");
         }
     }
 

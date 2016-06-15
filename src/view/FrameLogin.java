@@ -171,9 +171,9 @@ public class FrameLogin extends javax.swing.JFrame {
             globalRecords.setEntityUser(new EntityUser(Boolean.TRUE, hostSMTP, hostPOP, addr, psw));
             //打开主窗体并关闭登陆窗体
             this.setVisible(Boolean.FALSE);
-            FrameMain frameMain = new FrameMain();
+            FrameMainRebuild frameMain = new FrameMainRebuild();
             frameMain.setVisible(Boolean.TRUE);
-            
+            this.dispose();
         }
 
     }//GEN-LAST:event_btn_loginActionPerformed

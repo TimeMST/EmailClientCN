@@ -10,6 +10,7 @@ import tools.json.JSONObject;
 
 /**
  * 用户的实体类,用以暂时保存单个用户的信息.
+ *
  * @author maokelong
  */
 public class EntityUser {
@@ -43,7 +44,7 @@ public class EntityUser {
             this.emailAddr = jSONObject.getString("emailAddr");
             this.emailPsw = jSONObject.getString("emailPsw");
         } catch (Exception e) {
-            CheckMethods.PrintErrorMessage("试图在用户实体中解析非用户json！");
+            CheckMethods.PrintErrorMessage("试图在用户实体中解析非用户json！", "entity");
         }
     }
 

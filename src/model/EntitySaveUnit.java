@@ -34,7 +34,7 @@ public class EntitySaveUnit {
             this.saveType = jSONObject.getInt("saveType");
             this.saveContentJSONString = jSONObject.getString("saveContentJSONString");
         } catch (Exception e) {
-            CheckMethods.PrintErrorMessage("试图在存储单元实体中解析非存储单元json！");
+            CheckMethods.PrintErrorMessage("试图在存储单元实体中解析非存储单元json！","entity");
         }
     }
 

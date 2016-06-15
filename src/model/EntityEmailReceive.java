@@ -65,12 +65,15 @@ public class EntityEmailReceive {
             this.mailType = jSONObject.getInt("mailType");
             this.alreadyDownload = jSONObject.getBoolean("alreadyDownload");
         } catch (Exception e) {
-            CheckMethods.PrintErrorMessage("试图在收件实体中解析非收件json！");
+            CheckMethods.PrintErrorMessage("试图在收件实体中解析非收件json！","entity");
         }
     }
-
     public String getMailContentsString() {
         return mailContentsString;
+    }
+
+    public boolean getAlreadyDownload() {
+        return alreadyDownload;
     }
 
     public String getMailDevDatesString() {
@@ -104,6 +107,8 @@ public class EntityEmailReceive {
     public void setAlreadyDownload(boolean alreadyDownload) {
         this.alreadyDownload = alreadyDownload;
     }
+
+    
 
     public void setMailContentsString(String mailContentsString) {
         this.mailContentsString = mailContentsString;

@@ -63,7 +63,7 @@ public class DBHelper {
     public void openDatabase() {
         // TODO Auto-generated method stub
         try {
-            CheckMethods.PrintDebugMessage("打开数据库: " + dbName);
+            CheckMethods.PrintDebugMessage("打开数据库: " + dbName, "db");
             EnvironmentConfig envConfig = new EnvironmentConfig();
             envConfig.setAllowCreate(true);
             envConfig.setTransactional(true);
@@ -84,7 +84,7 @@ public class DBHelper {
                 myDatabase = myDbEnvironment.openDatabase(null, dbName, dbConfig);
             }
 
-            CheckMethods.PrintDebugMessage(dbName + "数据库中的数据个数: " + myDatabase.count());
+            CheckMethods.PrintDebugMessage(dbName + "数据库中的数据个数: " + myDatabase.count(), "db");
             /*
              *  Database.getDatabaseName()
                 取得数据库的名称
@@ -123,7 +123,7 @@ public class DBHelper {
                 CheckMethods.PrintDebugMessage("一共删除了 " + numDiscarded +" 条记录 从数据库 " + myDatabase.getDatabaseName());
              */
         } catch (DatabaseException e) {
-            CheckMethods.PrintInfoMessage(e.getMessage());
+            CheckMethods.PrintDebugMessage(e.getMessage(), "db");
 
         }
     }
@@ -151,26 +151,26 @@ public class DBHelper {
                 }
                 txn.commit();
                 if (res == OperationStatus.SUCCESS) {
-                    CheckMethods.PrintDebugMessage("向数据库" + dbName + "中写入:" + key + "," + value);
+                    CheckMethods.PrintDebugMessage("向数据库" + dbName + "中写入:" + key + "," + value, "db");
                     return true;
                 } else if (res == OperationStatus.KEYEXIST) {
-                    CheckMethods.PrintDebugMessage("向数据库" + dbName + "中写入:" + key + "," + value + "失败,该值已经存在");
+                    CheckMethods.PrintDebugMessage("向数据库" + dbName + "中写入:" + key + "," + value + "失败,该值已经存在", "db");
                     return false;
                 } else {
-                    CheckMethods.PrintDebugMessage("向数据库" + dbName + "中写入:" + key + "," + value + "失败");
+                    CheckMethods.PrintDebugMessage("向数据库" + dbName + "中写入:" + key + "," + value + "失败", "db");
                     return false;
                 }
             } catch (LockConflictException lockConflict) {
                 txn.abort();
-                CheckMethods.PrintInfoMessage("向数据库" + dbName + "中写入:" + key + "," + value + "出现lock异常");
-                CheckMethods.PrintInfoMessage(lockConflict.getMessage());
-                CheckMethods.PrintInfoMessage(lockConflict.getCause().toString());
-                CheckMethods.PrintInfoMessage(lockConflict.getStackTrace().toString());
+                CheckMethods.PrintDebugMessage("向数据库" + dbName + "中写入:" + key + "," + value + "出现lock异常", "db");
+                CheckMethods.PrintDebugMessage(lockConflict.getMessage(), "db");
+                CheckMethods.PrintDebugMessage(lockConflict.getCause().toString(), "db");
+                CheckMethods.PrintDebugMessage(lockConflict.getStackTrace().toString(), "db");
                 return false;
             }
         } catch (Exception e) {
             // 错误处理
-            CheckMethods.PrintInfoMessage("向数据库" + dbName + "中写入:" + key + "," + value + "出现错误");
+            CheckMethods.PrintDebugMessage("向数据库" + dbName + "中写入:" + key + "," + value + "出现错误", "db");
 
             return false;
         }
@@ -185,7 +185,7 @@ public class DBHelper {
             myDatabase.close();
         }
         if (myDbEnvironment != null) {
-            CheckMethods.PrintDebugMessage("关闭数据库: " + dbName);
+            CheckMethods.PrintDebugMessage("关闭数据库: " + dbName, "db");
             myDbEnvironment.cleanLog();
             myDbEnvironment.close();
         }
@@ -216,13 +216,13 @@ public class DBHelper {
                 OperationStatus res = myDatabase.delete(txn, theKey);
                 txn.commit();
                 if (res == OperationStatus.SUCCESS) {
-                    CheckMethods.PrintDebugMessage("从数据库" + dbName + "中删除:" + key);
+                    CheckMethods.PrintDebugMessage("从数据库" + dbName + "中删除:" + key, "db");
                     success = true;
                     return success;
                 } else if (res == OperationStatus.KEYEMPTY) {
-                    CheckMethods.PrintDebugMessage("没有从数据库" + dbName + "中找到:" + key + "。无法删除");
+                    CheckMethods.PrintDebugMessage("没有从数据库" + dbName + "中找到:" + key + "。无法删除", "db");
                 } else {
-                    CheckMethods.PrintDebugMessage("删除操作失败，由于" + res.toString());
+                    CheckMethods.PrintDebugMessage("删除操作失败，由于" + res.toString(), "db");
                 }
                 return false;
             } catch (UnsupportedEncodingException e) {
@@ -231,10 +231,10 @@ public class DBHelper {
                 e.printStackTrace();
                 return false;
             } catch (LockConflictException lockConflict) {
-                CheckMethods.PrintInfoMessage("删除操作失败，出现lockConflict异常");
-                CheckMethods.PrintInfoMessage(lockConflict.getMessage());
-                CheckMethods.PrintInfoMessage(lockConflict.getCause().toString());
-                CheckMethods.PrintInfoMessage(lockConflict.getStackTrace().toString());
+                CheckMethods.PrintDebugMessage("删除操作失败，出现lockConflict异常", "db");
+                CheckMethods.PrintDebugMessage(lockConflict.getMessage(), "db");
+                CheckMethods.PrintDebugMessage(lockConflict.getCause().toString(), "db");
+                CheckMethods.PrintDebugMessage(lockConflict.getStackTrace().toString(), "db");
                 sleepMillis = 1000;
 
                 continue;
@@ -269,18 +269,18 @@ public class DBHelper {
                 if (res == OperationStatus.SUCCESS) {
                     byte[] retData = theData.getData();
                     String foundData = new String(retData, "UTF-8");
-                    CheckMethods.PrintDebugMessage("从数据库" + dbName + "中读取:" + key + "," + foundData);
+                    CheckMethods.PrintDebugMessage("从数据库" + dbName + "中读取:" + key + "," + foundData, "db");
                     return foundData;
                 } else {
-                    CheckMethods.PrintDebugMessage("No record found for key '" + key + "'.");
+                    CheckMethods.PrintDebugMessage("No record found for key '" + key + "'.", "db");
                     return "";
                 }
             } catch (LockConflictException lockConflict) {
                 txn.abort();
-                CheckMethods.PrintInfoMessage("从数据库" + dbName + "中读取:" + key + "出现lock异常");
-                CheckMethods.PrintInfoMessage(lockConflict.getMessage());
-                CheckMethods.PrintInfoMessage(lockConflict.getCause().toString());
-                CheckMethods.PrintInfoMessage(lockConflict.getStackTrace().toString());
+                CheckMethods.PrintDebugMessage("从数据库" + dbName + "中读取:" + key + "出现lock异常", "db");
+                CheckMethods.PrintDebugMessage(lockConflict.getMessage(), "db");
+                CheckMethods.PrintDebugMessage(lockConflict.getCause().toString(), "db");
+                CheckMethods.PrintDebugMessage(lockConflict.getStackTrace().toString(), "db");
 
                 return "";
             }
@@ -298,7 +298,7 @@ public class DBHelper {
      */
     public Map<String, String> getEveryItem() {
         // TODO Auto-generated method stub
-        CheckMethods.PrintDebugMessage("===========遍历数据库" + dbName + "中的所有数据==========");
+        CheckMethods.PrintDebugMessage("===========遍历数据库" + dbName + "中的所有数据==========", "db");
         Cursor myCursor = null;
         Map<String, String> resultHashMap = new HashMap<String, String>();
         //ArrayList<String> resultList = new ArrayList<String>();
@@ -318,13 +318,13 @@ public class DBHelper {
                 String theKey = new String(foundKey.getData(), "UTF-8");
                 String theData = new String(foundData.getData(), "UTF-8");
                 resultHashMap.put(theKey, theData);
-                CheckMethods.PrintDebugMessage("Key | Data : " + theKey + " | " + theData + "");
+                CheckMethods.PrintDebugMessage("Key | Data : " + theKey + " | " + theData + "", "db");
                 while (myCursor.getNext(foundKey, foundData, LockMode.DEFAULT)
                         == OperationStatus.SUCCESS) {
                     theKey = new String(foundKey.getData(), "UTF-8");
                     theData = new String(foundData.getData(), "UTF-8");
                     resultHashMap.put(theKey, theData);
-                    CheckMethods.PrintDebugMessage("Key | Data : " + theKey + " | " + theData + "");
+                    CheckMethods.PrintDebugMessage("Key | Data : " + theKey + " | " + theData + "", "db");
                 }
             }
             myCursor.close();
@@ -335,9 +335,9 @@ public class DBHelper {
             e.printStackTrace();
             return null;
         } catch (Exception e) {
-            CheckMethods.PrintInfoMessage("getEveryItem处理出现异常");
-            CheckMethods.PrintInfoMessage(e.getMessage().toString());
-            CheckMethods.PrintInfoMessage(e.getCause().toString());
+            CheckMethods.PrintDebugMessage("getEveryItem处理出现异常", "db");
+            CheckMethods.PrintDebugMessage(e.getMessage().toString(), "db");
+            CheckMethods.PrintDebugMessage(e.getCause().toString(), "db");
 
             txn.abort();
             if (myCursor != null) {

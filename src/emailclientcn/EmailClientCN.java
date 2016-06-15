@@ -15,7 +15,6 @@ import model.EntityUser;
 import tools.DBHelper;
 import tools.json.JSONObject;
 import view.FrameLogin;
-import view.FrameMain;
 
 /**
  *
